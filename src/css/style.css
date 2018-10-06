@@ -1,0 +1,48 @@
+html {
+	height: 100%;
+}
+
+body {
+	height: 100%;
+	background-color: red;
+	background-color: rgb(131,3,3);
+	background-color: #830303;
+}
+
+#content {
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+	justify-content: center;
+}
+
+h3 {
+	position: relative;
+	top: -1em;
+}
+
+#svg {
+	margin-left: auto;
+	margin-right: auto;
+	background-color: white;
+}
+
+#toolTip {
+  position: absolute;
+  padding: 0.1em;
+  color: black;
+  border: 0.2em solid black;
+  font-size: 0.9em;
+  display: none;
+  color: blue;
+  color: #00bfff;
+  background-color: red;
+  background-color: #830303;
+}
+
+#footer {
+	margin-top: 3em;
+	text-align: center;
+}
+
+

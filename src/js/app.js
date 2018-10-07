@@ -99,6 +99,7 @@ const circles = d3.select("svg")
 				  .enter()
 				  .append("circle")
 				  .attr("class", "dot")
+				  .attr("id", "dotId")
 				  .attr("data-xvalue", d => d.Year)
 				  .attr("data-yvalue", d => d.Time)
 				  .attr("cx", d => xAxisScale(parseYear(d.Year)) + margin.left)
@@ -114,11 +115,22 @@ const circles = d3.select("svg")
 	                  .style("display", "inline-block")
 	                  .html(() => `${d.Name}: ${d.Nationality} <br> Year: ${d.Year}, Time: ${d.Time} <br><br> ${d.Doping}`)
     			  })
-    			  .on("mouseleave", function(d) {
+    			 /* .on("mouseleave", function(d) {
     			  	toolTip
     			  	  .style("display", "none")
-    			  });
+    			  });	*/
 
+    		/* For Mobile Devices */
+   	const clear = document.querySelector("body");
+   	clear.addEventListener("touchstart", function(e) {
+   	const clearToolTip = document.querySelectorAll("#toolTip");
+   		if (e.target.id !== "dotId") {
+   			for (let i = 0; i < clearToolTip.length; i++) {
+   				clearToolTip[i].style.display = "none";
+   			} 
+   		}
+	 });
+  
   };
 }
 scatterPlotGraph();

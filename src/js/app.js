@@ -115,10 +115,10 @@ const circles = d3.select("svg")
 	                  .style("display", "inline-block")
 	                  .html(() => `${d.Name}: ${d.Nationality} <br> Year: ${d.Year}, Time: ${d.Time} <br><br> ${d.Doping}`)
     			  })
-    			 /* .on("mouseleave", function(d) {
+    			  .on("mouseleave", function(d) {
     			  	toolTip
     			  	  .style("display", "none")
-    			  });	*/
+    			  });
 
     		/* For Mobile Devices */
    	const clear = document.querySelector("body");

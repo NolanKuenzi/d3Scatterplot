@@ -107,7 +107,6 @@ const circles = d3.select("svg")
     			  .style("fill", d => d.Doping === "" ? "#00bfff" : "#830303")
     			  .style("stroke", "black")
     			  .on("mouseover", function(d) {
-    			  	console.log(this);
     			  	toolTip
     			      .attr("data-year", d.Year)
     			      .style("left", d3.event.pageX + 15 + "px")

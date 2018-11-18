@@ -16,13 +16,7 @@ const viewHeight = +svg.attr("height") - margin.top - margin.bottom;
 svg = svg.append("g")
          .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-function scatterPlotGraph() {
-  const req = new XMLHttpRequest();
-  req.open("GET","https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/master/cyclist-data.json", true);
-  req.send();
-  req.onload = function() {
-  const data = JSON.parse(req.responseText);
-
+d3.json("https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/master/cyclist-data.json").then(function(data) {
   const parseYear = d3.timeParse("%Y");
 
   const xAxisScale = d3.scaleTime()
@@ -50,12 +44,12 @@ function scatterPlotGraph() {
 
   const yAxis = svg.append("g")
                    .attr("id", "y-axis")
-                   .call(yAxisCall);	
+                   .call(yAxisCall);  
 
   const toolTip = d3.select("body")
                     .append("div")
-                    .attr("id", "toolTip");		
-							  
+                    .attr("id", "toolTip");   
+                
   svg.append("rect")
      .attr("id", "legend")
      .attr("x", 840)
@@ -117,16 +111,17 @@ function scatterPlotGraph() {
                     .on("mouseleave", function(d) {
                       toolTip
                         .style("display", "none");
-                    }); 
-      /* For Mobile Devices */
-      const clear = document.querySelector("body");
-      clear.addEventListener("touchstart", function(e) {
-        if (e.target.className.baseVal !== "dot") {
-          toolTip
-            .style("display", "none");
-        }
-      });
-  
-  };
-}
-scatterPlotGraph();
+                    });
+
+}).catch(function(error) {
+    alert("Data failed to load, please try again.");
+});
+
+/* For Mobile Devices */
+const clear = document.querySelector("body");
+clear.addEventListener("touchstart", function(e) {
+  const toolT = document.getElementById("toolTip");
+  if (e.target.className.baseVal !== "dot") {
+    toolT.style.display = "none";
+  }
+});

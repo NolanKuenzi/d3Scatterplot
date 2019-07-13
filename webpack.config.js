@@ -1,7 +1,7 @@
 const path = require('path');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin'); 
+const MiniCssExtractPlugin = require('mini-css-extract-plugin'); 
 
 const paths = {
   DIST: path.resolve(__dirname, 'docs'),
@@ -20,7 +20,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: path.join(paths.SRC, 'index.html'),
     }),
-    new ExtractTextPlugin('style.bundle.css'), 
+    new MiniCssExtractPlugin('style.bundle.css'), 
   ],
 
   module: {
@@ -35,10 +35,8 @@ module.exports = {
 
       {
         test: /\.css$/,
-        loader: ExtractTextPlugin.extract({
-          use: 'css-loader',
-        }),
-      }
+        use: [MiniCssExtractPlugin.loader, 'css-loader']
+      },
     ],
   },
   
